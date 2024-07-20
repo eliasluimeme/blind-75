@@ -17,7 +17,7 @@ function isAnagram(s: string, t: string): boolean {
         countS[s[i]] = 1 + (countS[s[i]] || 0);
         countT[t[i]] = 1 + (countT[t[i]] || 0);
     }
-    console.log(countS, countT);
+
     for (const key in countS)
         if (countS[key] !== countT[key])
             return false;
@@ -25,4 +25,4 @@ function isAnagram(s: string, t: string): boolean {
     return true;
 }
 
-isAnagram("anagram", "nagaram"); // true
+console.log(isAnagram("anagram", "nagaram")); // true

@@ -1,11 +1,22 @@
 function groupAnagrams(strs: string[]): string[][] {
-    const map = new Map<string, string[]>();
-    for (const str of strs) {
-        const key = str.split('').sort().join('');
-        if (!map.has(key)) {
-            map.set(key, []);
-        }
-        map.get(key)!.push(str);
+    const ans = new Map<string, string[]>();
+
+    for (const s of strs) {
+        const count = Array(26).fill(0);
+
+        for (const c of s)
+            count[c.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+
+        const key = count.toString();
+
+        if (!ans[key])
+            ans[key] = [];
+
+        ans[key].push(s);
     }
-    return Array.from(map.values());
+
+    return Object.values(ans);
 }
+
+const strs = ["eat","tea","tan","ate","nat","bat"]
+console.log(groupAnagrams(strs))
